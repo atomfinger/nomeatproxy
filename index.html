@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>No Meat Proxy</title>
+		<meta name="description" content="Don't be a proxy. Be a person.">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+		<style>
+			:root {
+				--bg: #fafaf8;
+				--fg: #1a1a1a;
+				--muted: #5a5a5a;
+				--accent: #b3391f;
+				--good: #1f7a3d;
+				--bad: #b3391f;
+				--border: #ddd8cc;
+				--card: #ffffff;
+			}
+			
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--bg: #17181a;
+					--fg: #eaeaea;
+					--muted: #a3a3a3;
+					--accent: #e2725b;
+					--good: #4caf6f;
+					--bad: #e2725b;
+					--border: #33343a;
+					--card: #202124;
+				}
+			}
+			
+			* { box-sizing: border-box; }
+			
+			body {
+				margin: 0;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+				background: var(--bg);
+				color: var(--fg);
+				line-height: 1.6;
+			}
+			
+			main {
+				max-width: 720px;
+				margin: 0 auto;
+				padding: 4rem 1.5rem 3rem;
+			}
+			
+			.brand {
+				display: flex;
+				align-items: center;
+				gap: 0.7rem;
+				margin: 0 0 0.4rem;
+			}
+			
+			.brand img {
+				height: 2.6rem;
+				width: auto;
+			}
+			
+			h1 {
+				font-size: 2.4rem;
+				margin: 0;
+				letter-spacing: -0.02em;
+			}
+			
+			.hook {
+				font-size: 1.15rem;
+				color: var(--muted);
+				margin: 0 0 2.5rem;
+			}
+			
+			p {
+				margin: 0.8rem 0;
+			}
+			
+			footer {
+				margin-top: 4rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid var(--border);
+				color: var(--muted);
+				font-size: 0.9rem;
+			}
+			
+			footer a {
+				color: var(--muted);
+				text-decoration: underline;
+			}
+			
+			footer a:hover {
+				color: var(--fg);
+			}
+			
+			.examples {
+				margin-top: 2.5rem;
+			}
+			
+			.example {
+				margin-top: 2rem;
+			}
+			
+			.example h3,
+			.sub-heading {
+				font-size: 1.15rem;
+				font-weight: 600;
+				color: var(--muted);
+				margin: 0 0 0.7rem;
+			}
+			
+			.sub-heading {
+				margin-top: 2.5rem;
+			}
+			
+			.mock-pair {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 0.8rem;
+			}
+			
+			@media (min-width: 560px) {
+				.mock-pair {
+					grid-template-columns: 1fr 1fr;
+				}
+			}
+			
+			.mock {
+				position: relative;
+				border: 1px solid var(--border);
+				border-radius: 10px;
+				background: var(--card);
+				padding: 0.9rem;
+			}
+			
+			.mock.sync-height,
+			.mock.sync-source {
+				align-self: start;
+			}
+			
+			.mock.sync-height {
+				overflow: hidden;
+			}
+			
+			.mock-label {
+				display: block;
+				font-weight: 600;
+				font-size: 0.8rem;
+				margin-bottom: 0.7rem;
+			}
+			
+			.mock.dont .mock-label { color: var(--bad); }
+			.mock.do .mock-label { color: var(--good); }
+			
+			.msg {
+				display: flex;
+				gap: 0.5rem;
+				align-items: flex-start;
+				margin-bottom: 0.6rem;
+			}
+			
+			.avatar {
+				width: 26px;
+				height: 26px;
+				border-radius: 50%;
+				flex-shrink: 0;
+				object-fit: cover;
+			}
+			
+			.who {
+				font-weight: 600;
+				font-size: 0.78rem;
+				margin-bottom: 0.15rem;
+			}
+			
+			.bubble {
+				background: var(--bg);
+				border-radius: 8px;
+				padding: 0.45rem 0.65rem;
+				font-size: 0.82rem;
+				line-height: 1.45;
+				color: var(--fg);
+			}
+			
+			.review {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+				font-size: 0.76rem;
+				line-height: 1.55;
+				border: 1px solid var(--border);
+				border-radius: 8px;
+				overflow: hidden;
+			}
+			
+			.diff-line {
+				padding: 0.1rem 0.65rem;
+				white-space: pre;
+				color: var(--muted);
+				background: var(--bg);
+			}
+			
+			.diff-line.add {
+				background: rgba(76, 175, 111, 0.16);
+				color: var(--fg);
+			}
+			
+			.review-thread {
+				background: var(--card);
+				border-top: 1px solid var(--border);
+				border-bottom: 1px solid var(--border);
+				padding: 0.6rem 0.65rem;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+			}
+			
+			.review-comment {
+				display: flex;
+				gap: 0.5rem;
+				align-items: flex-start;
+				font-size: 0.82rem;
+				line-height: 1.45;
+				margin-bottom: 0.5rem;
+			}
+			
+			.review-comment:last-child {
+				margin-bottom: 0;
+			}
+			
+			.note {
+				font-size: 0.85rem;
+				line-height: 1.5;
+				color: var(--muted);
+				margin: 0.9rem 0 0;
+			}
+			
+			footer ul {
+				list-style: none;
+				padding: 0;
+				margin: 0.5rem 0 1rem;
+			}
+			
+			footer li {
+				margin: 0.2rem 0;
+			}
+			
+			a {
+				color: var(--accent);
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<div class="brand">
+				<img src="no_meat_proxy_logo.png" alt="No Meat Proxy logo">
+				<h1>No Meat Proxy</h1>
+			</div>
+			<p class="hook">AI is a tool. You shouldn't be.</p>
+
+			<section class="examples">
+				<div class="example">
+					<h3>Don't paste AI generated text as your answer</h3>
+					<div class="mock-pair">
+						<div class="mock dont sync-height">
+							<span class="mock-label">✕ Don't</span>
+							<div class="msg">
+								<img class="avatar" src="jim.jpeg" alt="Jim">
+								<div>
+									<div class="who">Jim</div>
+									<div class="bubble">Hey, how does the feature flag system decide which users see the new checkout flow?</div>
+								</div>
+							</div>
+							<div class="msg">
+								<img class="avatar" src="kevin.jpg" alt="Kevin">
+								<div>
+									<div class="who">Kevin</div>
+									<div class="bubble">
+										You can find the logic in feature_flags/rollout.py, in the evaluate_rollout() function at line 142.
+										It builds a composite key from the user_id and flag_key, hashes it with murmur3, and checks the
+										result modulo 100 against the rollout_percentage field on the FeatureFlagConfig model. Results get
+										cached in Redis for 5 minutes to avoid re-evaluating on every request, and there's a fallback path
+										in evaluate_rollout_legacy() that kicks in if the cache lookup times out, which uses the same
+										hashing scheme but reads the percentage from the old feature_flags.yaml config instead...
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="mock do sync-source">
+							<span class="mock-label">✓ Do</span>
+							<div class="msg">
+								<img class="avatar" src="jim.jpeg" alt="Jim">
+								<div>
+									<div class="who">Jim</div>
+									<div class="bubble">Hey, how does the feature flag system decide which users see the new checkout flow?</div>
+								</div>
+							</div>
+							<div class="msg">
+								<img class="avatar" src="kevin.jpg" alt="Kevin">
+								<div>
+									<div class="who">Kevin</div>
+									<div class="bubble">
+										It's basically a weighted coin flip tied to your user ID, so you always land on the same side. Right
+										now it's set to 20%, so about 1 in 5 people get it.
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<p class="note">
+						When someone asks you a question, they're asking because you're supposed to know the answer. They
+						trust you and your expertise. Pasting back whatever the AI said leaves them wondering whether you even read it, and
+						whether it's actually correct.
+					</p>
+					<p class="note">
+						It's also disrespectful. It's not far from replying with a <a href="https://letmegooglethat.com/">“let me google that for you”</a> 
+						link: they asked an honest question, and you couldn't be bothered to give them a real answer.
+					</p>
+					<p class="note">
+						If professionalism and respect aren't reason enough, consider this: pasting AI answers like this
+						advertises how replaceable you are. Why would anyone need you if all you do is forward an AI's
+						output? At that point, they could just cut out the middleman and ask the AI directly.
+					</p>
+
+					<p class="note">
+						If you're an AI user, then use AI to derive at an answer, but don't offload the burden to decipher and verify that
+						answer onto whoever asked you.
+					</p>
+
+					<p class="note">
+						Remember: they asked you, not ChatGPT.
+					</p>
+				</div>
+
+				<div class="example">
+					<h3>Don't blame the AI for what you signed off on</h3>
+					<div class="mock-pair">
+						<div class="mock dont">
+							<span class="mock-label">✕ Don't</span>
+							<div class="review">
+								<div class="diff-line">  function chargeCustomer(order) {</div>
+								<div class="diff-line add">+   try {</div>
+								<div class="diff-line add">+     processPayment(order);</div>
+								<div class="diff-line add">+   } catch (err) {</div>
+								<div class="diff-line add">+     logger.warn(err);</div>
+								<div class="diff-line add">+   }</div>
+								<div class="review-thread">
+									<div class="review-comment">
+										<img class="avatar" src="jim.jpeg" alt="Jim">
+										<div>
+											<div class="who">Jim</div>
+											Why are we swallowing this error instead of letting it propagate?
+										</div>
+									</div>
+									<div class="review-comment">
+										<img class="avatar" src="kevin.jpg" alt="Kevin">
+										<div>
+											<div class="who">Kevin</div>
+											lol, idk, Claude wrote it.
+										</div>
+									</div>
+								</div>
+								<div class="diff-line">  }</div>
+							</div>
+						</div>
+						<div class="mock do">
+							<span class="mock-label">✓ Do</span>
+							<div class="review">
+								<div class="diff-line">  function chargeCustomer(order) {</div>
+								<div class="diff-line add">+   try {</div>
+								<div class="diff-line add">+     processPayment(order);</div>
+								<div class="diff-line add">+   } catch (err) {</div>
+								<div class="diff-line add">+     logger.warn(err);</div>
+								<div class="diff-line add">+   }</div>
+								<div class="review-thread">
+									<div class="review-comment">
+										<img class="avatar" src="jim.jpeg" alt="Jim">
+										<div>
+											<div class="who">Jim</div>
+											Why are we swallowing this error instead of letting it propagate?
+										</div>
+									</div>
+									<div class="review-comment">
+										<img class="avatar" src="kevin.jpg" alt="Kevin">
+										<div>
+											<div class="who">Kevin</div>
+											Upstream retries on any thrown error, and this one's expected during backfills, so we log
+											and drop it here to avoid a retry storm. Can add a comment explaining that.
+										</div>
+									</div>
+								</div>
+								<div class="diff-line">  }</div>
+							</div>
+						</div>
+					</div>
+					<p class="note">
+						Even if AI did most of the work, you're still responsible for it. You should be able to answer basic
+						questions about your own output, code or otherwise. Handing that responsibility to an AI is never
+						acceptable.
+					</p>
+					<p class="note">
+						It's also disrespectful. Not bothering to do the work yourself, then pushing the burden of verifying
+						it onto someone else, just shows how little care you have for the people you work with and the work 
+						you do.
+					</p>
+					<p class="note">
+						If you use AI, you still have to understand and verify what it gives you. You don't get to wave away
+						responsibility. Blaming the AI just tells people not to trust your work.
+					</p>
+					<p class="note">
+						Offloading responsibility to AI highlights how replaceable you are. If all you do is prompt an AI and
+						submit whatever comes out, why do they need you?
+					</p>
+				</div>
+			</section>
+
+			<h3 class="sub-heading">"You're just an AI hater"</h3>
+			<p class="note">
+				If you use AI, more power to you. This page isn't about demonising AI usage.
+				Heck, this very website is partly AI generated (I'm terrible with CSS).
+				If all you got out of this page is "AI hater", then you're the problem.
+			</p>
+
+			<footer>
+				<p>Inspired by:</p>
+				<ul>
+					<li><a href="https://gruhn.me/blog/2026-08-03/">Don't Be a Meat Proxy</a></li>
+					<li><a href="https://dontasktoask.com/">Don't ask to ask, just ask</a></li>
+					<li><a href="https://nohello.net/en/">No Hello</a></li>
+				</ul>
+				<p>Source on <a href="https://github.com/atomfinger/nomeatproxy">GitHub</a>.</p>
+				<p>Created by <a href="https://lindbakk.com">John Mikael Lindbakk</a>.</p>
+			</footer>
+		</main>
+		<script>
+			function syncMockHeights() {
+				document.querySelectorAll('.mock-pair').forEach(function (pair) {
+					var dont = pair.querySelector('.mock.sync-height');
+					var source = pair.querySelector('.mock.sync-source');
+					if (!dont || !source) return;
+					dont.style.height = 'auto';
+					dont.style.height = source.getBoundingClientRect().height + 'px';
+					});
+				}
+				syncMockHeights();
+				window.addEventListener('resize', syncMockHeights);
+		</script>
+	</body>
+</html>
