@@ -81,19 +81,23 @@
 			}
 			
 			h1 {
-				font-size: 2.4rem;
+				font-size: 2.7rem;
 				margin: 0;
 				letter-spacing: -0.02em;
 			}
 			
 			.hook {
 				font-size: 1.15rem;
+				line-height: 1.6;
 				color: var(--muted);
 				margin: 0 0 2.5rem;
 			}
 			
 			p {
-				margin: 0.8rem 0;
+				font-size: 0.85rem;
+				line-height: 1.5;
+				color: var(--muted);
+				margin: 0.9rem 0 0;
 			}
 			
 			footer {
@@ -104,6 +108,12 @@
 				font-size: 0.9rem;
 			}
 			
+			footer p {
+				font-size: 0.9rem;
+				line-height: 1.6;
+				margin: 0.8rem 0;
+			}
+
 			footer a {
 				color: var(--muted);
 				text-decoration: underline;
@@ -123,7 +133,7 @@
 			
 			.example h3,
 			.sub-heading {
-				font-size: 1.15rem;
+				font-size: 1.35rem;
 				font-weight: 600;
 				color: var(--muted);
 				margin: 0 0 0.7rem;
@@ -244,11 +254,60 @@
 				margin-bottom: 0;
 			}
 			
-			.note {
+			.list-pair {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 0.9rem;
+				margin-top: 0.9rem;
+			}
+
+			@media (min-width: 560px) {
+				.list-pair {
+					grid-template-columns: 1fr 1fr;
+					gap: 1.5rem;
+				}
+			}
+
+			.list-pair > div > p:first-child {
+				margin-top: 0;
+			}
+
+			.note-list {
 				font-size: 0.85rem;
 				line-height: 1.5;
 				color: var(--muted);
-				margin: 0.9rem 0 0;
+				margin: 0.5rem 0 0;
+				padding-left: 1.2rem;
+			}
+
+			.note-list li {
+				margin-bottom: 0.25rem;
+			}
+
+			.note-list.marked {
+				list-style: none;
+				padding-left: 0;
+			}
+
+			.note-list.marked li {
+				position: relative;
+				padding-left: 1.5rem;
+			}
+
+			.note-list.marked li::before {
+				position: absolute;
+				left: 0;
+				font-weight: 700;
+			}
+
+			.note-list.dont-list li::before {
+				content: "✕";
+				color: var(--bad);
+			}
+
+			.note-list.do-list li::before {
+				content: "✓";
+				color: var(--good);
 			}
 			
 			footer ul {
@@ -276,7 +335,7 @@
 
 			<section class="examples">
 				<div class="example">
-					<h3>Don't paste AI generated text as your answer</h3>
+					<h3>Don't paste AI responses to people</h3>
 					<div class="mock-pair">
 						<div class="mock dont sync-height">
 							<span class="mock-label">✕ Don't</span>
@@ -284,7 +343,7 @@
 								<img class="avatar" src="jim.jpeg" alt="Jim">
 								<div>
 									<div class="who">Jim</div>
-									<div class="bubble">Hey, how does the feature flag system decide which users see the new checkout flow?</div>
+									<div class="bubble">Hey, how do the feature toggles work? Can we specify per user?</div>
 								</div>
 							</div>
 							<div class="msg">
@@ -292,12 +351,16 @@
 								<div>
 									<div class="who">Kevin</div>
 									<div class="bubble">
-										You can find the logic in feature_flags/rollout.py, in the evaluate_rollout() function at line 142.
-										It builds a composite key from the user_id and flag_key, hashes it with murmur3, and checks the
-										result modulo 100 against the rollout_percentage field on the FeatureFlagConfig model. Results get
-										cached in Redis for 5 minutes to avoid re-evaluating on every request, and there's a fallback path
-										in evaluate_rollout_legacy() that kicks in if the cache lookup times out, which uses the same
-										hashing scheme but reads the percentage from the old feature_flags.yaml config instead...
+										The feature flag system here is a config based custom implementation.
+										Definition: a FeatureToggles class — a @ConfigurationProperties data class with
+										boolean fields (e.g. enableNewCheckoutFlow, useOptimizedSearchIndex), registered via
+										@EnableConfigurationProperties in a FeatureConfig class. Usage pattern: inject FeatureToggles
+										and branch on the property, e.g. if (!featureToggles.enableNewCheckoutFlow) throw a
+										ForbiddenException. Some flags gate an early return/exception, others switch between
+										implementations entirely. Configuration is plain YAML under app.feature-toggles.*, with
+										per-profile overrides, and since it's standard @ConfigurationProperties, it's also
+										overridable via env vars. This means that toggling a feature per user is not possible given
+										today's implementation.
 									</div>
 								</div>
 							</div>
@@ -308,7 +371,7 @@
 								<img class="avatar" src="jim.jpeg" alt="Jim">
 								<div>
 									<div class="who">Jim</div>
-									<div class="bubble">Hey, how does the feature flag system decide which users see the new checkout flow?</div>
+									<div class="bubble">Hey, how do the feature toggles work? Can we specify per user?</div>
 								</div>
 							</div>
 							<div class="msg">
@@ -316,40 +379,52 @@
 								<div>
 									<div class="who">Kevin</div>
 									<div class="bubble">
-										It's basically a weighted coin flip tied to your user ID, so you always land on the same side. Right
-										now it's set to 20%, so about 1 in 5 people get it.
+										I'm afraid not. It's a hardcoded on and off switch.
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<p class="note">
-						When someone asks you a question, they're asking because you're supposed to know the answer. They
-						trust you and your expertise. Pasting back whatever the AI said leaves them wondering whether you even read it, and
-						whether it's actually correct.
+					<p>
+						By simply regurgitating what an AI gave, you made everything much harder on the one who asked
+						the question. AI-generated answers tend to be long-winded, over-complicated and often include
+						details that weren't requested. They asked you because they trusted your judgment. By simply forwarding AI output,
+						you're just acting as a middleman. You're just a meat proxy.
 					</p>
-					<p class="note">
-						It's also disrespectful. It's not far from replying with a <a href="https://letmegooglethat.com/">“let me google that for you”</a> 
-						link: they asked an honest question, and you couldn't be bothered to give them a real answer.
+					<p>
+						If all you do is relay messages between people and an AI, what value do you bring?
 					</p>
-					<p class="note">
-						If professionalism and respect aren't reason enough, consider this: pasting AI answers like this
-						advertises how replaceable you are. Why would anyone need you if all you do is forward an AI's
-						output? At that point, they could just cut out the middleman and ask the AI directly.
-					</p>
+					<p>By replying with AI answers, you're:</p>
+					<ul class="note-list">
+						<li>making it harder for everyone else.</li>
+						<li>highlighting your own replaceability.</li>
+						<li>not actually being helpful.</li>
+						<li>looking unprofessional.</li>
+						<li>making people trust you less.</li>
+					</ul>
+					<div class="list-pair">
+						<div>
+							<p>More things to avoid:</p>
+							<ul class="note-list marked dont-list">
+								<li>Don't "contribute" to discussion by pasting wall-of-text AI results.</li>
+								<li>Don't ask questions like "Hey, so I have this problem: &lt;Big ass AI-generated block of text&gt;".</li>
+							</ul>
+						</div>
+						<div>
+							<p>Here is what you should try instead:</p>
+							<ul class="note-list marked do-list">
+								<li>Do read and verify AI output.</li>
+								<li>Do formulate your own answers and questions.</li>
+								<li>Do contribute to discussions when you have something meaningful to contribute.</li>
+							</ul>
+						</div>
+					</div>
 
-					<p class="note">
-						If you're an AI user, then use AI to derive at an answer, but don't offload the burden to decipher and verify that
-						answer onto whoever asked you.
-					</p>
-
-					<p class="note">
-						Remember: they asked you, not ChatGPT.
-					</p>
+					<p>Answer people like a person. Treat people like people. Don't be a meat proxy!</p>
 				</div>
 
 				<div class="example">
-					<h3>Don't blame the AI for what you signed off on</h3>
+					<h3>Don't submit AI-generated work you don't understand or haven't verified</h3>
 					<div class="mock-pair">
 						<div class="mock dont">
 							<span class="mock-label">✕ Don't</span>
@@ -401,7 +476,8 @@
 										<div>
 											<div class="who">Kevin</div>
 											Upstream retries on any thrown error, and this one's expected during backfills, so we log
-											and drop it here to avoid a retry storm. Can add a comment explaining that.
+											and drop it here to avoid a retry storm. I'll add a comment. Should I create a backlog
+											ticket for rewriting upstream when we got the time?
 										</div>
 									</div>
 								</div>
@@ -409,38 +485,48 @@
 							</div>
 						</div>
 					</div>
-					<p class="note">
-						Even if AI did most of the work, you're still responsible for it. You should be able to answer basic
-						questions about your own output, code or otherwise. Handing that responsibility to an AI is never
-						acceptable.
-					</p>
-					<p class="note">
-						It's also disrespectful. Not bothering to do the work yourself, then pushing the burden of verifying
-						it onto someone else, just shows how little care you have for the people you work with and the work 
-						you do.
-					</p>
-					<p class="note">
-						If you use AI, you still have to understand and verify what it gives you. You don't get to wave away
-						responsibility. Blaming the AI just tells people not to trust your work.
-					</p>
-					<p class="note">
-						Offloading responsibility to AI highlights how replaceable you are. If all you do is prompt an AI and
-						submit whatever comes out, why do they need you?
-					</p>
+					<p>
+						Even if AI did most of the work, you're still responsible for it, and it has your name on it.
+						If your name is on it, it's your work. It is your responsibility to understand, verify
+						and own the work that has been done.
+					</p>	
+					<p>By blindly submitting AI work you're:</p>
+					<ul class="note-list">
+						<li>putting the burden on other people to understand and verify your work.</li>
+						<li>showing disrespect by forcing others to do what you can't be bothered to do yourself.</li>
+						<li>showing others that your work needs to be double-checked.</li>
+						<li>looking unprofessional.</li>
+						<li>showcasing how replaceable you are.</li>
+					</ul>
+					<div class="list-pair">
+						<div>
+							<p>More things to avoid:</p>
+							<ul class="note-list marked dont-list">
+								<li>Don't reply to feedback to your work with AI responses.</li>
+								<li>Don't blame the AI when getting feedback.</li>
+								<li>Don't excuse the lack of knowledge because "AI did it".</li>
+								<li>Don't let standards slip just because AI is involved.</li>
+							</ul>
+						</div>
+						<div>
+							<p>Here is what you should try instead:</p>
+							<ul class="note-list marked do-list">
+								<li>Read, understand and verify the work.</li>
+								<li>Reply to feedback as the owner of the work.</li>
+								<li>Take responsibility for the work as if it was your own (it has your name on it, so it is yours).</li>
+								<li>Show others that you care about what you're doing.</li>
+							</ul>
+						</div>
+					</div>
+
+					<p>Take ownership over work that has your name on it. Be someone people can rely on. Don't be a meat proxy.</p>
 				</div>
 			</section>
-
-			<h3 class="sub-heading">"You're just an AI hater"</h3>
-			<p class="note">
-				If you use AI, more power to you. This page isn't about demonising AI usage.
-				Heck, this very website is partly AI generated (I'm terrible with CSS).
-				If all you got out of this page is "AI hater", then you're the problem.
-			</p>
 
 			<footer>
 				<p>Inspired by:</p>
 				<ul>
-					<li><a href="https://gruhn.me/blog/2026-08-03/">Don't Be a Meat Proxy</a></li>
+					<li><a href="https://gruhn.me/blog/2026-08-03/">Don't Be a Meat Proxy</a> (Original inspiration for this site)</li>
 					<li><a href="https://dontasktoask.com/">Don't ask to ask, just ask</a></li>
 					<li><a href="https://nohello.net/en/">No Hello</a></li>
 				</ul>
