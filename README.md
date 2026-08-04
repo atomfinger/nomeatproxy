@@ -6,6 +6,6 @@ Live at [nomeatproxy.com](https://nomeatproxy.com).
 
 ## Inspired by
 
-- [Don't Be a Meat Proxy](https://gruhn.me/blog/2026-08-03/) — the post that named this problem
+- [Don't Be a Meat Proxy](https://gruhn.me/blog/2026-08-03/) — the post that inspired this page.
 - [Don't ask to ask, just ask](https://dontasktoask.com/)
 - [No Hello](https://nohello.net/en/)
