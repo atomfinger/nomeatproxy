@@ -358,6 +358,50 @@
 				color: var(--good);
 			}
 
+			.share .share-secondary {
+				margin-top: 2rem;
+			}
+
+			.emoji-grid {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.8rem;
+			}
+
+			.emoji-item {
+				display: flex;
+				align-items: center;
+				gap: 0.55rem;
+				padding: 0.5rem 0.9rem;
+				border: 1px solid var(--border);
+				border-radius: 999px;
+				background: var(--card);
+				text-decoration: none;
+			}
+
+			.emoji-item:hover {
+				border-color: var(--accent);
+			}
+
+			.emoji-item img {
+				width: 32px;
+				height: 32px;
+				display: block;
+				flex-shrink: 0;
+			}
+
+			.emoji-name {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+				font-size: 0.72rem;
+				color: var(--muted);
+			}
+
+			.emoji-item:hover .emoji-name {
+				color: var(--accent);
+			}
+
+
 			footer ul {
 				list-style: none;
 				padding: 0;
@@ -590,6 +634,18 @@
 					</svg>
 					<span class="share-button-label">Copy link</span>
 				</button>
+
+				<p class="share-secondary">Or react with one of these:</p>
+				<div class="emoji-grid">
+					<a class="emoji-item" href="emoji/meat_proxy_front.png" download="meat_proxy.png" title="Download meat_proxy.png">
+						<img src="emoji/meat_proxy_front.png" alt="Meat proxy emoji, front view" width="32" height="32">
+						<span class="emoji-name">:meat_proxy:</span>
+					</a>
+					<a class="emoji-item" href="emoji/meat_proxy_slab.png" download="meat_proxy.png" title="Download meat_proxy.png">
+						<img src="emoji/meat_proxy_slab.png" alt="Meat proxy emoji, angled view" width="32" height="32">
+						<span class="emoji-name">:meat_proxy:</span>
+					</a>
+				</div>
 			</section>
 
 			<footer>
@@ -652,6 +708,32 @@
 						}
 					});
 				}
+
+				document.querySelectorAll('.emoji-item').forEach(function (link) {
+					link.addEventListener('click', function (event) {
+						if (!window.fetch || !window.URL || !window.URL.createObjectURL) return;
+						var url = link.getAttribute('href');
+						var filename = link.getAttribute('download');
+						event.preventDefault();
+						fetch(url).then(function (response) {
+							if (!response.ok) throw new Error('request failed');
+							return response.blob();
+						}).then(function (blob) {
+							var objectUrl = URL.createObjectURL(blob);
+							var helper = document.createElement('a');
+							helper.href = objectUrl;
+							helper.download = filename;
+							document.body.appendChild(helper);
+							helper.click();
+							document.body.removeChild(helper);
+							setTimeout(function () {
+								URL.revokeObjectURL(objectUrl);
+							}, 1000);
+						}).catch(function () {
+							window.location.href = url;
+						});
+					});
+				});
 		</script>
 		<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 	</body>
