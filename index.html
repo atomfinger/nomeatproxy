@@ -101,10 +101,7 @@
 			}
 			
 			footer {
-				margin-top: 4rem;
 				padding-top: 1.5rem;
-				border-top: 1px solid var(--border);
-				color: var(--muted);
 				font-size: 0.9rem;
 			}
 			
@@ -315,6 +312,52 @@
 				color: var(--good);
 			}
 			
+			.share {
+				margin-top: 3rem;
+				padding: 1.75rem 1rem;
+				text-align: center;
+				border-top: 1px dashed var(--border);
+				border-bottom: 1px dashed var(--border);
+			}
+
+			.share p {
+				color: var(--fg);
+				font-size: 1rem;
+				font-weight: 600;
+				margin: 0 0 1rem;
+			}
+
+			.share-button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				font: inherit;
+				font-size: 0.9rem;
+				font-weight: 600;
+				color: var(--fg);
+				background: var(--card);
+				border: 1px solid var(--border);
+				border-radius: 999px;
+				padding: 0.55rem 1.3rem;
+				cursor: pointer;
+			}
+
+			.share-button:hover {
+				border-color: var(--accent);
+				color: var(--accent);
+			}
+
+			.share-button svg {
+				width: 15px;
+				height: 15px;
+				flex-shrink: 0;
+			}
+
+			.share-button.copied {
+				border-color: var(--good);
+				color: var(--good);
+			}
+
 			footer ul {
 				list-style: none;
 				padding: 0;
@@ -538,6 +581,17 @@
 				</ul>
 			</section>
 
+			<section class="share">
+				<p>Dealing with a meat proxy? Share this page:</p>
+				<button type="button" class="share-button" id="share-button" data-url="https://nomeatproxy.com/">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+						<path d="M10 13a5 5 0 0 0 7.07 0l1.93-1.93a5 5 0 0 0-7.07-7.07L10.5 5.5"></path>
+						<path d="M14 11a5 5 0 0 0-7.07 0L5 12.93a5 5 0 0 0 7.07 7.07L13.5 18.5"></path>
+					</svg>
+					<span class="share-button-label">Copy link</span>
+				</button>
+			</section>
+
 			<footer>
 				<p>Inspired by:</p>
 				<ul>
@@ -561,6 +615,43 @@
 				}
 				syncMockHeights();
 				window.addEventListener('resize', syncMockHeights);
+
+				var shareButton = document.getElementById('share-button');
+				if (shareButton) {
+					var shareLabel = shareButton.querySelector('.share-button-label');
+					var defaultLabel = shareLabel.textContent;
+					var resetTimer;
+					shareButton.addEventListener('click', function () {
+						var url = shareButton.getAttribute('data-url');
+						function showCopied() {
+							clearTimeout(resetTimer);
+							shareLabel.textContent = 'Copied!';
+							shareButton.classList.add('copied');
+							resetTimer = setTimeout(function () {
+								shareLabel.textContent = defaultLabel;
+								shareButton.classList.remove('copied');
+							}, 1800);
+						}
+						function fallbackCopy() {
+							var helper = document.createElement('textarea');
+							helper.value = url;
+							helper.style.position = 'fixed';
+							helper.style.opacity = '0';
+							document.body.appendChild(helper);
+							helper.select();
+							try {
+								document.execCommand('copy');
+							} catch (err) {}
+							document.body.removeChild(helper);
+							showCopied();
+						}
+						if (navigator.clipboard && navigator.clipboard.writeText) {
+							navigator.clipboard.writeText(url).then(showCopied, fallbackCopy);
+						} else {
+							fallbackCopy();
+						}
+					});
+				}
 		</script>
 		<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 	</body>
