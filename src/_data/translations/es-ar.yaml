@@ -1,0 +1,110 @@
+lang: es-ar
+title: No Meat Proxy
+description: La IA es una herramienta. Vos no deberías serlo.
+ogSiteName: No Meat Proxy
+ogImageAlt: 'Logo de No Meat Proxy junto al lema en inglés: La IA es una herramienta. Vos no deberías serlo.'
+brand:
+  logoAlt: Logo de No Meat Proxy
+hook: La IA es una herramienta. Vos no deberías serlo.
+example1:
+  heading: No les pegues respuestas de IA a otras personas
+  dontLabel: ✕ Así no
+  doLabel: ✓ Así sí
+  question: Che, ¿cómo funcionan los feature toggles? ¿Los podemos configurar por usuario?
+  dontAnswer: >-
+    El sistema de feature flags es una implementación propia basada en configuración.
+    Definición: una clase FeatureToggles, una clase de datos @ConfigurationProperties con
+    campos booleanos (por ejemplo, enableNewCheckoutFlow, useOptimizedSearchIndex), registrada
+    mediante @EnableConfigurationProperties en una clase FeatureConfig. Patrón de uso: inyectar
+    FeatureToggles y decidir según la propiedad; por ejemplo, if
+    (!featureToggles.enableNewCheckoutFlow) throw a ForbiddenException. Algunas flags controlan
+    un retorno anticipado o una excepción; otras cambian por completo la implementación. La
+    configuración es YAML bajo app.feature-toggles.*, con valores específicos por perfil y,
+    como usa @ConfigurationProperties estándar, también se puede sobrescribir con variables de
+    entorno. Esto significa que la implementación actual no permite activar una funcionalidad
+    por usuario.
+  doAnswer: Lamentablemente, no. Es un interruptor de encendido y apagado fijo en el código.
+  paragraph1: >-
+    Al repetir sin más lo que te dio una IA, le complicaste todo a quien hizo la pregunta. Las
+    respuestas generadas por IA suelen ser largas, demasiado complicadas y muchas veces incluyen
+    detalles que nadie pidió. Te preguntaron a vos porque confiaban en tu criterio. Si solo
+    reenviás lo que genera la IA, actuás como un intermediario. Sos un "meat proxy": un
+    intermediario de carne y hueso.
+  paragraph2: Si lo único que hacés es pasar mensajes entre personas y una IA, ¿qué valor aportás?
+  consequencesIntro: 'Cuando contestás con respuestas de IA, estás:'
+  consequences:
+    - complicándoles las cosas a los demás.
+    - dejando en evidencia lo fácil que es reemplazarte.
+    - aportando poco o nada de ayuda real.
+    - dando una imagen poco profesional.
+    - haciendo que confíen menos en vos.
+  avoidHeading: 'Más cosas para evitar:'
+  avoidList:
+    - No "aportes" a una conversación pegando paredes de texto generadas por IA.
+    - 'No hagas preguntas como "Che, tengo este problema: <Bloque enorme de texto generado por IA>".'
+  insteadHeading: 'Probá hacer esto:'
+  insteadList:
+    - Leé y verificá lo que genera la IA.
+    - Formulá tus propias respuestas y preguntas.
+    - Participá en las conversaciones cuando tengas algo valioso para aportar.
+  closing: Respondé como una persona. Tratá a los demás como personas. ¡No seas un meat proxy!
+example2:
+  heading: No entregues trabajo generado por IA que no entendés o no verificaste
+  dontLabel: ✕ Así no
+  doLabel: ✓ Así sí
+  reviewComment1: ¿Por qué estamos ocultando este error en vez de dejar que se propague?
+  dontReviewComment2: Jaja, ni idea, lo escribió Claude.
+  doReviewComment2: >-
+    El sistema que nos llama reintenta ante cualquier error, y este es esperable durante las
+    cargas de datos históricos. Por eso lo registramos y lo descartamos acá, para evitar una
+    avalancha de reintentos. Voy a agregar un comentario. ¿Creo una tarea en el backlog para
+    modificar ese sistema cuando tengamos tiempo?
+  paragraph1: >-
+    Aunque la IA haya hecho la mayor parte, vos seguís siendo responsable del trabajo y lleva tu
+    nombre. Si lleva tu nombre, es tu trabajo. Es tu responsabilidad entenderlo, verificarlo y
+    hacerte cargo de lo que se hizo.
+  consequencesIntro: 'Cuando entregás trabajo de IA sin revisarlo, estás:'
+  consequences:
+    - dejando en manos de otras personas la tarea de entender y verificar tu trabajo.
+    - faltándoles el respeto a los demás al obligarlos a hacer lo que vos no te tomaste el trabajo de hacer.
+    - mostrando que tu trabajo necesita una revisión extra.
+    - dando una imagen poco profesional.
+    - mostrando lo fácil que es reemplazarte.
+  avoidHeading: 'Más cosas para evitar:'
+  avoidList:
+    - No contestes los comentarios sobre tu trabajo con respuestas de IA.
+    - No le eches la culpa a la IA cuando te hagan una devolución.
+    - 'No justifiques no saber algo con "lo hizo la IA".'
+    - No bajes la vara solo porque usaste IA.
+  insteadHeading: 'Probá hacer esto:'
+  insteadList:
+    - Leé, entendé y verificá el trabajo.
+    - Respondé a las devoluciones como responsable del trabajo.
+    - Hacete cargo del trabajo como si fuera tuyo (lleva tu nombre, así que es tuyo).
+    - Demostrá que te importa lo que hacés.
+  closing: Hacete cargo del trabajo que lleva tu nombre. Sé alguien en quien se pueda confiar. No seas un meat proxy.
+whyMatters:
+  heading: 'Por qué importa:'
+  originalInspirationNote: ' (La inspiración original de este sitio; en inglés)'
+share:
+  prompt: '¿Estás lidiando con un meat proxy? Compartí esta página:'
+  copyLabel: Copiar enlace
+  copiedLabel: ¡Copiado!
+  secondary: 'O reaccioná con uno de estos emojis:'
+  emojiDownloadTitle: Descargar meat_proxy.png
+  emojiFrontAlt: Emoji de meat proxy, vista de frente
+  emojiAngledAlt: Emoji de meat proxy, vista en perspectiva
+footer:
+  inspiredByHeading: 'Inspirado en:'
+  dontAskToAsk:
+    text: No preguntes si podés preguntar, preguntá (en inglés)
+  noHello:
+    text: No Hello (en inglés)
+  alsoAvailable: 'También disponible en:'
+  sourcePrefix: 'Código fuente en '
+  sourceSuffix: .
+  createdByPrefix: 'Creado por '
+  createdBySuffix: .
+  disclaimer: >-
+    (Antes de que alguien diga "¡te agarré!": algunas partes de este sitio se generaron con IA.
+    Soy malo con CSS, con el frontend y en general.)
