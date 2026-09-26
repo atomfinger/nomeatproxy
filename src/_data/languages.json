@@ -6,5 +6,6 @@
 	{ "code": "ja", "href": "ja/", "hreflang": "ja", "lang": "ja", "name": "日本語" },
 	{ "code": "ko", "href": "ko/", "hreflang": "ko", "lang": "ko", "name": "한국어" },
 	{ "code": "ru", "href": "ru/", "hreflang": "ru", "lang": "ru", "name": "Русский" },
-	{ "code": "be", "href": "be/", "hreflang": "be", "lang": "be", "name": "Беларуская" }
+	{ "code": "be", "href": "be/", "hreflang": "be", "lang": "be", "name": "Беларуская" },
+	{ "code": "fa", "href": "fa/", "hreflang": "fa", "lang": "fa", "name": "فارسی" }
 ]

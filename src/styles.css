@@ -207,6 +207,7 @@ html:lang(ko) .review {
 }
 
 .diff-line {
+	direction: ltr;
 	padding: 0.1rem 0.65rem;
 	white-space: pre;
 	color: var(--muted);
@@ -262,7 +263,7 @@ html:lang(ko) .review {
 	line-height: 1.5;
 	color: var(--muted);
 	margin: 0.5rem 0 0;
-	padding-left: 1.2rem;
+	padding-inline-start: 1.2rem;
 }
 
 .note-list li {
@@ -271,17 +272,17 @@ html:lang(ko) .review {
 
 .note-list.marked {
 	list-style: none;
-	padding-left: 0;
+	padding-inline-start: 0;
 }
 
 .note-list.marked li {
 	position: relative;
-	padding-left: 1.5rem;
+	padding-inline-start: 1.5rem;
 }
 
 .note-list.marked li::before {
 	position: absolute;
-	left: 0;
+	inset-inline-start: 0;
 	font-weight: 700;
 }
 

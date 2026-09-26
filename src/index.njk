@@ -9,7 +9,7 @@ permalink: "{{ (languages | findByCode(code)).href }}index.html"
 {%- set lang = languages | findByCode(code) %}
 {%- set pageUrl = "https://nomeatproxy.com/" + lang.href %}
 <!DOCTYPE html>
-<html lang="{{ t.lang }}">
+<html lang="{{ t.lang }}" dir="{{ t.dir | default("ltr") }}">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -253,7 +253,7 @@ permalink: "{{ (languages | findByCode(code)).href }}index.html"
 					<li><a href="https://dontasktoask.com/{{ t.footer.dontAskToAsk.hrefPostfix | default("") }}">{{ t.footer.dontAskToAsk.text | default("Don't ask to ask, just ask") }}</a></li>
 					<li><a href="https://nohello.net/{{ t.footer.noHello.hrefPostfix | default("en/") }}">{{ t.footer.noHello.text | default("No Hello") }}</a></li>
 				</ul>
-				<p>{{ t.footer.alsoAvailable }}{% for l in languages | exceptCode(code) %} <a href="/{{ l.href }}" hreflang="{{ l.hreflang }}" lang="{{ l.lang }}">{{ l.name }}</a>{{ ' ·' if not loop.last }}{% endfor %}</p>
+				<p>{{ t.footer.alsoAvailable }}{% for l in languages | exceptCode(code) %} <a href="/{{ l.href }}" hreflang="{{ l.hreflang }}" lang="{{ l.lang }}" dir="auto">{{ l.name }}</a>{{ ' ·' if not loop.last }}{% endfor %}</p>
 				<p>{{ t.footer.sourcePrefix }}<a href="https://github.com/atomfinger/nomeatproxy">GitHub</a>{{ t.footer.sourceSuffix }}</p>
 				<p>{{ t.footer.createdByPrefix }}<a href="https://lindbakk.com">John Mikael Lindbakk</a>{{ t.footer.createdBySuffix }}</p>
 				<p><small><small>{{ t.footer.disclaimer }}</small></small></p>

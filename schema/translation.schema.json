@@ -20,6 +20,7 @@
 	],
 	"properties": {
 		"lang": { "type": "string", "minLength": 1 },
+		"dir": { "enum": ["ltr", "rtl"] },
 		"title": { "type": "string", "minLength": 1 },
 		"description": { "type": "string", "minLength": 1 },
 		"ogSiteName": { "type": "string", "minLength": 1 },
