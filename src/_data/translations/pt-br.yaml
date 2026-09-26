@@ -1,0 +1,111 @@
+lang: pt-br
+title: No Meat Proxy
+description: IA é uma ferramenta. Você não deveria ser.
+ogSiteName: No Meat Proxy
+ogImageAlt: 'Logo do No Meat Proxy ao lado do slogan: IA é uma ferramenta. Você não deveria ser.'
+brand:
+  logoAlt: Logo do No Meat Proxy
+hook: IA é uma ferramenta. Você não deveria ser.
+example1:
+  heading: Não cole respostas de IA para as pessoas
+  dontLabel: ✕ Não faça
+  doLabel: ✓ Faça
+  question: E aí, como funcionam os feature toggles? Dá pra especificar por usuário?
+  dontAnswer: >-
+    O sistema de feature flags daqui é uma implementação customizada baseada em config.
+    Definição: uma classe FeatureToggles — um data class @ConfigurationProperties com
+    campos booleanos (ex.: enableNewCheckoutFlow, useOptimizedSearchIndex), registrada via
+    @EnableConfigurationProperties numa classe FeatureConfig. Padrão de uso: injetar FeatureToggles
+    e ramificar na propriedade, ex.: if (!featureToggles.enableNewCheckoutFlow) throw a
+    ForbiddenException. Algumas flags barram um early return/exception, outras trocam
+    implementações por completo. A configuração é YAML simples em app.feature-toggles.*, com
+    overrides por profile, e como é @ConfigurationProperties padrão, também dá para
+    sobrescrever via env vars. Isso significa que ligar uma feature por usuário não é possível
+    com a implementação atual.
+  doAnswer: Infelizmente não. É um interruptor hardcoded de liga e desliga.
+  paragraph1: >-
+    Ao simplesmente regurgitar o que uma IA te deu, você deixou tudo bem mais difícil para quem
+    fez a pergunta. Respostas geradas por IA tendem a ser prolixas, complicadas demais e muitas
+    vezes incluem detalhes que ninguém pediu. Te perguntaram porque confiaram no seu julgamento.
+    Ao só encaminhar a saída da IA, você está agindo como intermediário. Você é só um
+    intermediário de carne e osso.
+  paragraph2: Se tudo o que você faz é retransmitir mensagens entre pessoas e uma IA, que valor você agrega?
+  consequencesIntro: 'Ao responder com respostas de IA, você está:'
+  consequences:
+    - deixando tudo mais difícil para os outros.
+    - destacando o quanto você é substituível.
+    - não sendo realmente útil.
+    - parecendo pouco profissional.
+    - fazendo as pessoas confiarem menos em você.
+  avoidHeading: 'Mais coisas a evitar:'
+  avoidList:
+    - Não "contribua" na discussão colando um textão de IA.
+    - 'Não faça perguntas do tipo "E aí, tô com esse problema: <bloco gigante gerado por IA>".'
+  insteadHeading: 'Em vez disso, tente isto:'
+  insteadList:
+    - Leia e verifique a saída da IA.
+    - Formule suas próprias respostas e perguntas.
+    - Participe das discussões quando tiver algo relevante a acrescentar.
+  closing: Responda às pessoas como uma pessoa. Trate as pessoas como pessoas. Não seja um intermediário de carne e osso!
+example2:
+  heading: Não entregue trabalho gerado por IA que você não entende ou não verificou
+  dontLabel: ✕ Não faça
+  doLabel: ✓ Faça
+  reviewComment1: Por que estamos suprimindo este erro ao invés de permitir sua propagação?
+  dontReviewComment2: kkk, sei lá, o Claude que escreveu.
+  doReviewComment2: >-
+    O upstream retenta em qualquer erro lançado, e esse aqui é esperado durante backfills, então
+    logamos e descartamos para evitar uma tempestade de retries. Vou adicionar um comentário. Quer
+    que eu abra um ticket no backlog pra reescrever o upstream quando a gente tiver tempo?
+  paragraph1: >-
+    Mesmo se a IA fez a maior parte do trabalho, você ainda é responsável por ele, e ele tem o seu
+    nome. Se o seu nome está nele, é o seu trabalho. É sua responsabilidade entender, verificar e
+    assumir o que foi feito.
+  consequencesIntro: 'Ao entregar trabalho de IA no piloto automático, você está:'
+  consequences:
+    - jogando nas outras pessoas o ônus de entender e verificar o seu trabalho.
+    - sendo desrespeitoso ao forçar os outros a fazer o que você não se deu ao trabalho de fazer.
+    - mostrando que o seu trabalho precisa ser checado de novo.
+    - parecendo pouco profissional.
+    - exibindo o quanto você é substituível.
+  avoidHeading: 'Mais coisas a evitar:'
+  avoidList:
+    - Não responda ao feedback do seu trabalho com respostas de IA.
+    - Não culpe a IA quando receber feedback.
+    - 'Não justifique a falta de conhecimento com "a IA que fez".'
+    - Não deixe o padrão cair só porque tem IA no meio.
+  insteadHeading: 'Em vez disso, tente isto:'
+  insteadList:
+    - Leia, entenda e verifique o trabalho.
+    - Responda ao feedback como dono do trabalho.
+    - Assuma a responsabilidade como se fosse seu (tem o seu nome, então é seu).
+    - Mostre que você se importa com o que está fazendo.
+  closing: >-
+    Assuma o trabalho que tem o seu nome. Seja alguém em quem as pessoas possam confiar. Não seja
+    um intermediário de carne e osso.
+whyMatters:
+  heading: 'Por que isso importa:'
+  originalInspirationNote: ' (Inspiração original deste site)'
+share:
+  prompt: 'Lidando com um intermediário de carne e osso? Compartilhe esta página:'
+  copyLabel: Copiar link
+  copiedLabel: Copiado!
+  secondary: 'Ou reaja com um destes:'
+  emojiDownloadTitle: Baixar meat_proxy.png
+  emojiFrontAlt: Emoji de intermediário de carne e osso, vista frontal
+  emojiAngledAlt: Emoji de intermediário de carne e osso, vista em ângulo
+footer:
+  inspiredByHeading: 'Inspirado por:'
+  dontAskToAsk:
+    text: Não peça para perguntar, apenas pergunte
+    hrefPostfix: pt-br/
+  noHello:
+    hrefPostfix: pt-br/
+  alsoAvailable: 'Também disponível em:'
+  sourcePrefix: 'Código no '
+  sourceSuffix: .
+  createdByPrefix: 'Criado por '
+  createdBySuffix: .
+  disclaimer: >-
+    (Antes que venham falar: partes deste site foram geradas por IA. Sou péssimo em CSS, frontend
+    e na vida em geral.)

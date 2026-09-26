@@ -7,6 +7,12 @@ const yaml = require("js-yaml");
 
 const script = fs.readFileSync(path.join(__dirname, "..", "src", "script.js"), "utf8");
 
+const translationsDir = path.join(__dirname, "..", "src", "_data", "translations");
+const locales = fs
+	.readdirSync(translationsDir)
+	.filter((file) => /\.ya?ml$/.test(file))
+	.map((file) => file.replace(/\.ya?ml$/, ""));
+
 function createShareButton(t, locale) {
 	t.mock.timers.enable({ apis: ["setTimeout"] });
 	const translation = yaml.load(fs.readFileSync(
@@ -61,7 +67,7 @@ function createShareButton(t, locale) {
 	};
 }
 
-for (const locale of ["ko", "ja", "tr", "en"]) {
+for (const locale of locales) {
 	test(`${locale}: copies the page URL, shows the translated label, and restores it after 1800 ms`, async (t) => {
 		const share = createShareButton(t, locale);
 		await share.click();
