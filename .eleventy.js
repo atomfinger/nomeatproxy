@@ -6,10 +6,6 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter("findByCode", (list, code) => list.find((item) => item.code === code));
 	eleventyConfig.addFilter("exceptCode", (list, code) => list.filter((item) => item.code !== code));
 
-	// Hand-maintained static translations (will be migrated...)
-	eleventyConfig.addPassthroughCopy("pt-br");
-	eleventyConfig.addPassthroughCopy("es-ar");
-
 	// Shared static assets referenced by every locale.
 	eleventyConfig.addPassthroughCopy("CNAME");
 	eleventyConfig.addPassthroughCopy("*.{png,jpg,jpeg,svg,webp,gif,ico}");
