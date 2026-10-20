@@ -8,5 +8,6 @@
 	{ "code": "ru", "href": "ru/", "hreflang": "ru", "lang": "ru", "name": "Русский" },
 	{ "code": "be", "href": "be/", "hreflang": "be", "lang": "be", "name": "Беларуская" },
 	{ "code": "fa", "href": "fa/", "hreflang": "fa", "lang": "fa", "name": "فارسی" },
-	{ "code": "zh-tw", "href": "zh-tw/", "hreflang": "zh-TW", "lang": "zh-TW", "name": "中文（繁體）" }
+	{ "code": "zh-tw", "href": "zh-tw/", "hreflang": "zh-TW", "lang": "zh-TW", "name": "中文（繁體）" },
+	{ "code": "zh-cn", "href": "zh-cn/", "hreflang": "zh-CN", "lang": "zh-CN", "name": "中文（简体）" }
 ]
