@@ -1,0 +1,83 @@
+lang: zh-tw
+title: No Meat Proxy
+description: AI 是個工具，但別讓自己成為 AI 的肉身代理人。
+ogSiteName: No Meat Proxy
+ogImageAlt: No Meat Proxy 的 Logo，旁邊寫著標語「AI 是個工具，但別讓自己成為 AI 的肉身代理人。」
+brand:
+  logoAlt: No Meat Proxy 的 Logo
+hook: AI 是個工具，但別讓自己成為 AI 的肉身代理人。
+example1:
+  heading: 別直接複製貼上 AI 的回覆給別人
+  dontLabel: ✕ 錯誤示範
+  doLabel: ✓ 正確示範
+  question: 嗨，問一下，功能開關（Feature Flag）的運作機制是什麼？我們能針對個別使用者控制嗎？
+  dontAnswer: 本功能開關系統是一套基於設定的自訂實作。定義：FeatureToggles 類別是一個 @ConfigurationProperties 資料類別，包含若干布林欄位（例如 enableNewCheckoutFlow、useOptimizedSearchIndex），並透過 FeatureConfig 類別中的 @EnableConfigurationProperties 進行註冊。用法：注入 FeatureToggles，然後依據對應屬性進行分支判斷，例如在 if (!featureToggles.enableNewCheckoutFlow) 時拋出 ForbiddenException。部分開關作為判斷條件，決定是否提早 return 或拋出例外；另一些開關則用於在完全不同的實作之間切換。設定使用 YAML 格式，功能開關以 app.feature-toggles.* 命名，並支援依 profile 分別覆寫；此外，由於使用的是標準的 @ConfigurationProperties，也可以透過環境變數覆寫。綜上所述，在目前的實作下，無法針對個別使用者切換功能。
+  doAnswer: 不太行，這個寫死了，只能全開或全關。
+  paragraph1: 你把 AI 的輸出原封不動地照搬過來，只會讓提問的人更頭痛。AI 生成的回答往往又長又繞，還常常夾帶一堆沒人問的細節。其他人來請教你，是因為他們相信你的判斷力。如果你只是單純把 AI 的輸出轉傳出去，那你就成了傳聲筒。換句話說，你就是個肉身代理人（meat proxy）。
+  paragraph2: 仔細想想，如果你做的只是在人和 AI 之間來回傳話，那你存在的價值在哪裡？
+  consequencesIntro: 直接拿 AI 的輸出去回覆別人，結果就是：
+  consequences:
+    - 你在給其他人製造更多麻煩。
+    - 你在凸顯自己隨時可以被取代。
+    - 你其實幫不上什麼忙。
+    - 顯得你很不專業。
+    - 讓大家越來越不信任你。
+  avoidHeading: 除此之外，以下這些行為也該避免：
+  avoidList:
+    - 別靠貼一大段 AI 生成的長篇大論來「參與」討論。
+    - 別用這種方式提問：「欸，我遇到一個問題：<一大坨 AI 生成的文字>」。
+  insteadHeading: 相反地，你應該試著這樣做：
+  insteadList:
+    - 先閱讀 AI 的輸出，並加以驗證。
+    - 用自己的話組織問題和回答。
+    - 等你有真正有價值的內容時，再參與討論。
+  closing: 講人話，善待他人。別當 AI 的「肉身代理人」！
+example2:
+  heading: 別提交你不了解或未經驗證的 AI 產出
+  dontLabel: ✕ 錯誤示範
+  doLabel: ✓ 正確示範
+  reviewComment1: 為什麼我們選擇吞掉這個錯誤，而不是往上拋？
+  dontReviewComment2: 哈哈哈，我也不懂，是 Claude 寫的。
+  doReviewComment2: 上游只要遇到拋出的例外就會重試，而回填期間出現這個錯誤是預期中的，所以我們選擇只在這裡記個 log，不再往上拋，以免觸發重試風暴。我加個註解吧。除此之外，要不要我開一張待辦工單，等有空再把上游的處理方式重構一遍？
+  paragraph1: 你要清楚地知道：就算大部分的工作是 AI 做的，責任還是在你身上，而且它還是以你的名義提交的。只要是你署名的，那就是你的產出。你有責任看懂、驗證這份產出，並為它負責。
+  consequencesIntro: 無腦提交 AI 的產出，結果就是：
+  consequences:
+    - 你把理解和驗證產出的責任丟給別人。
+    - 把自己懶得做的工作強加在別人身上，是非常不尊重人的行為。
+    - 等於告訴別人，你的產出需要再檢查一次。
+    - 顯得你很不專業。
+    - 對外凸顯你的可替代性。
+  avoidHeading: 除此之外，以下這些行為也該避免：
+  avoidList:
+    - 拿 AI 的輸出去回應別人的意見。
+    - 收到意見時，把錯推給 AI。
+    - 用「是 AI 寫的」這個藉口為自己的無知開脫。
+    - 因為用了 AI 就降低工作標準。
+  insteadHeading: 相反地，你應該試著這樣做：
+  insteadList:
+    - 先閱讀、理解並驗證 AI 的輸出。
+    - 以作者的身分和態度回應別人的意見。
+    - 主動承擔自己產出的責任（因為產出由你提交，它就是你的）。
+    - 讓別人感受到你真的在乎自己做的事。
+  closing: 主動為你署名的工作負責。當個值得信賴的人，而不是 AI 的「肉身代理人」。
+whyMatters:
+  heading: 延伸閱讀：
+  originalInspirationNote: ' (本站最初的靈感來源)'
+share:
+  prompt: 遇到肉身代理人了？把這個頁面分享出去：
+  copyLabel: 複製連結
+  copiedLabel: 已複製！
+  secondary: 或者使用以下表情符號回應：
+  emojiDownloadTitle: 下載 meat_proxy.png
+  emojiFrontAlt: 肉身代理人表情符號，正面視角
+  emojiAngledAlt: 肉身代理人表情符號，斜側視角
+footer:
+  inspiredByHeading: 靈感來源：
+  dontAskToAsk:
+    hrefPostfix: zh-tw/
+  alsoAvailable: 其他語言版本：
+  sourcePrefix: '原始碼託管在 '
+  sourceSuffix: ' 上。'
+  createdByPrefix: '本站由 '
+  createdBySuffix: ' 建立。'
+  disclaimer: （先說明一下：本站部分內容是 AI 生成的。我不太擅長 CSS 和前端，其他方面也普普通通。）
