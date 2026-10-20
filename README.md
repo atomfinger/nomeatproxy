@@ -22,6 +22,7 @@ Also available in:
 | [Türkçe](https://nomeatproxy.com/tr/) | [@deligoez](https://github.com/deligoez) |
 | [Português (Brasil)](https://nomeatproxy.com/pt-br/) | [@mohvn](https://github.com/mohvn) |
 | [Español (Argentina)](https://nomeatproxy.com/es-ar/) | [@matiaspalomeque](https://github.com/matiaspalomeque) |
+| [Français](https://nomeatproxy.com/fr/) | [@kenden](https://github.com/kenden) |
 | [日本語](https://nomeatproxy.com/ja/) | [@Shieru292](https://github.com/Shieru292) |
 | [한국어](https://nomeatproxy.com/ko/) | [@greenheadHQ](https://github.com/greenheadHQ) |
 | [Русский](https://nomeatproxy.com/ru/) | [@kuraysdev](https://github.com/kuraysdev) |

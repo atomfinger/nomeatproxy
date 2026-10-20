@@ -1,0 +1,118 @@
+lang: fr
+title: No Meat Proxy
+description: L'IA est un outil. N'en soyez pas un.
+ogSiteName: No Meat Proxy
+ogImageAlt: 'Logo de No Meat Proxy à côté du slogan en anglais : L''IA est un outil. N''en soyez pas un.'
+brand:
+  logoAlt: Logo de No Meat Proxy
+hook: L'IA est un outil. N'en soyez pas un.
+example1:
+  heading: Ne copiez-collez pas les réponses d'une IA à d'autres personnes.
+  dontLabel: ✕ À éviter
+  doLabel: ✓ À faire
+  question: Bonjour, comment fonctionnent les feature toggles ? On peut les configurer par utilisateur ?
+  dontAnswer: >-
+    Le système de feature flags est ici une implémentation maison basée sur la configuration.
+    Définition : une classe FeatureToggles, une data class @ConfigurationProperties avec des
+    champs booléens (par exemple enableNewCheckoutFlow, useOptimizedSearchIndex), enregistrée via
+    @EnableConfigurationProperties dans une classe FeatureConfig. Mode d'utilisation : injecter
+    FeatureToggles et faire un branchement selon la propriété, par exemple
+    if (!featureToggles.enableNewCheckoutFlow) throw a ForbiddenException. Certains flags
+    déclenchent un retour anticipé ou une exception, d'autres basculent complètement entre deux
+    implémentations. La configuration est du simple YAML sous app.feature-toggles.*, avec des
+    surcharges par profil et, comme il s'agit de @ConfigurationProperties standard, elle peut
+    aussi être surchargée par des variables d'environnement. Cela signifie qu'il est impossible
+    d'activer une fonctionnalité par utilisateur avec l'implémentation actuelle.
+  doAnswer: Malheureusement non. C'est un simple interrupteur on/off codé en dur.
+  paragraph1: >-
+    En vous contentant de recracher ce qu'une IA vous a donné, vous avez rendu les choses bien
+    plus difficiles pour la personne qui a posé la question. Les réponses générées par IA ont
+    tendance à être longues, trop compliquées et à inclure souvent des détails que personne n'a
+    demandés. On vous a posé la question parce qu'on avait confiance en votre jugement. En vous
+    contentant de transférer ce que produit l'IA, vous ne faites que jouer les intermédiaires.
+    Vous n'êtes qu'un « meat proxy » : un intermédiaire fait de viande.
+  paragraph2: Si tout ce que vous faites, c'est relayer des messages entre des gens et une IA, quelle valeur apportez-vous ?
+  consequencesIntro: 'En répondant par du texte généré par l''IA, vous :'
+  consequences:
+    - compliquez la vie de tout le monde.
+    - mettez en évidence que vous êtes remplaçable.
+    - n'aidez pas vraiment.
+    - donnez une image peu professionnelle.
+    - abaissez la confiance qu'on vous porte.
+  avoidHeading: 'Autres choses à éviter :'
+  avoidList:
+    - Ne « contribuez » pas à une discussion en collant des pavés de texte générés par IA.
+    - >-
+      Ne posez pas de questions du genre « Bonjour, j'ai ce problème : <Énorme bloc de texte
+      généré par une IA> ».
+  insteadHeading: 'Faites plutôt ceci :'
+  insteadList:
+    - Lisez et vérifiez ce que produit l'IA.
+    - Formulez vos propres réponses et questions.
+    - Participez aux discussions quand vous avez quelque chose d'utile à apporter.
+  closing: Répondez comme une personne. Traitez les gens comme des personnes. Ne soyez pas un meat proxy !
+example2:
+  heading: Ne soumettez pas un travail généré par IA que vous ne comprenez pas ou que vous n'avez pas vérifié
+  dontLabel: ✕ À éviter
+  doLabel: ✓ À faire
+  reviewComment1: Pourquoi est-ce qu'on ignore cette erreur au lieu de la propager ?
+  dontReviewComment2: Mdr, aucune idée, c'est Claude qui a écrit ça.
+  doReviewComment2: >-
+    Le code en amont réessaie après chaque erreur, et celle-ci est normale pendant les reprises d'historique,
+    donc ici on la logue et on l'ignore pour éviter une avalanche de nouvelles tentatives.
+    Je vais ajouter un commentaire. Est-ce que je crée un ticket dans le backlog pour réécrire le code en amont
+    quand on aura le temps ?
+  paragraph1: >-
+    Même si l'IA a fait l'essentiel du travail, vous en restez responsable, et votre nom
+    est apposé dessus. Si votre nom est dessus, c'est votre travail. Il vous incombe de comprendre,
+    de vérifier et d'assumer le travail qui a été fait.
+  consequencesIntro: 'En soumettant aveuglément du travail d''IA, vous :'
+  consequences:
+    - imposez aux autres le fardeau de comprendre et de vérifier votre travail.
+    - manquez de respect aux autres en les obligeant à faire ce que vous ne prenez pas la peine de faire vous-même.
+    - montrez aux autres que votre travail doit être revérifié.
+    - donnez une image peu professionnelle.
+    - montrez à quel point vous êtes remplaçable.
+  avoidHeading: 'Autres choses à éviter :'
+  avoidList:
+    - Ne répondez pas aux commentaires sur votre travail avec des réponses générées par l'IA.
+    - Ne rejetez pas la faute sur l'IA quand vous recevez un retour.
+    - N'excusez pas votre manque de connaissances par « c'est l'IA qui l'a fait ».
+    - Ne baissez pas vos exigences sous prétexte qu'une IA est impliquée.
+  insteadHeading: 'Essayez de faire ceci à la place :'
+  insteadList:
+    - Lisez, comprenez et vérifiez le travail.
+    - Répondez aux retours en tant que responsable du travail.
+    - >-
+      Assumez la responsabilité du travail comme s'il était le vôtre (votre nom est dessus, donc
+      il est à vous).
+    - Montrez aux autres que vous vous souciez de ce que vous faites.
+  closing: >-
+    Assumez le travail qui porte votre nom. Soyez quelqu'un sur qui on peut compter. Ne soyez pas
+    un meat proxy.
+whyMatters:
+  heading: 'Pourquoi c''est important :'
+  originalInspirationNote: ' (Inspiration originale de ce site ; en anglais)'
+share:
+  prompt: 'Vous avez affaire à un meat proxy ? Partagez cette page :'
+  copyLabel: Copier le lien
+  copiedLabel: Copié !
+  secondary: 'Ou réagissez avec l''un de ces emojis :'
+  emojiDownloadTitle: Télécharger meat_proxy.png
+  emojiFrontAlt: Emoji meat proxy, vue de face
+  emojiAngledAlt: Emoji meat proxy, vue en perspective
+footer:
+  inspiredByHeading: 'Inspiré par :'
+  dontAskToAsk:
+    text: Ne demande pas pour demander, juste demande
+    hrefPostfix: fr/
+  noHello:
+    hrefPostfix: fr/
+  alsoAvailable: 'Aussi disponible en :'
+  sourcePrefix: 'Code source sur '
+  sourceSuffix: .
+  createdByPrefix: 'Créé par '
+  createdBySuffix: .
+  disclaimer: >-
+    (Avant que vous ne me tombiez dessus : certaines parties de ce site sont générées par IA. Je suis mauvais en
+    CSS, mauvais en frontend et mauvais tout court.)
