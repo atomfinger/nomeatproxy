@@ -2,7 +2,7 @@ lang: en
 title: No Meat Proxy
 description: AI is a tool. You shouldn't be.
 ogSiteName: No Meat Proxy
-ogImageAlt: 'No Meat Proxy logo next to the tagline: AI is a tool. You shouldn''t be.'
+ogImageAlt: "No Meat Proxy logo next to the tagline: AI is a tool. You shouldn't be."
 brand:
   logoAlt: No Meat Proxy logo
 hook: AI is a tool. You shouldn't be.
@@ -28,20 +28,20 @@ example1:
     details that weren't requested. They asked you because they trusted your judgment. By simply
     forwarding AI output, you're just acting as a middleman. You're just a meat proxy.
   paragraph2: If all you do is relay messages between people and an AI, what value do you bring?
-  consequencesIntro: 'By replying with AI answers, you''re:'
+  consequencesIntro: "By replying with AI answers, you're:"
   consequences:
     - making it harder for everyone else.
     - highlighting your own replaceability.
     - not actually being helpful.
     - looking unprofessional.
     - making people trust you less.
-  avoidHeading: 'More things to avoid:'
+  avoidHeading: "More things to avoid:"
   avoidList:
     - Don't "contribute" to discussion by pasting wall-of-text AI results.
     - >-
       Don't ask questions like "Hey, so I have this problem: <Big ass AI-generated block of
       text>".
-  insteadHeading: 'Here is what you should try instead:'
+  insteadHeading: "Here is what you should try instead:"
   insteadList:
     - Do read and verify AI output.
     - Do formulate your own answers and questions.
@@ -61,20 +61,20 @@ example2:
     Even if AI did most of the work, you're still responsible for it, and it has your name on it. If
     your name is on it, it's your work. It is your responsibility to understand, verify and own the
     work that has been done.
-  consequencesIntro: 'By blindly submitting AI work you''re:'
+  consequencesIntro: "By blindly submitting AI work you're:"
   consequences:
     - putting the burden on other people to understand and verify your work.
     - showing disrespect by forcing others to do what you can't be bothered to do yourself.
     - showing others that your work needs to be double-checked.
     - looking unprofessional.
     - showcasing how replaceable you are.
-  avoidHeading: 'More things to avoid:'
+  avoidHeading: "More things to avoid:"
   avoidList:
     - Don't reply to feedback to your work with AI responses.
     - Don't blame the AI when getting feedback.
     - Don't excuse the lack of knowledge because "AI did it".
     - Don't let standards slip just because AI is involved.
-  insteadHeading: 'Here is what you should try instead:'
+  insteadHeading: "Here is what you should try instead:"
   insteadList:
     - Read, understand and verify the work.
     - Reply to feedback as the owner of the work.
@@ -86,22 +86,22 @@ example2:
     Take ownership over work that has your name on it. Be someone people can rely on. Don't be a
     meat proxy.
 whyMatters:
-  heading: 'Why this matters:'
-  originalInspirationNote: ' (Original inspiration for this site)'
+  heading: "Why this matters:"
+  originalInspirationNote: " (Original inspiration for this site)"
 share:
-  prompt: 'Dealing with a meat proxy? Share this page:'
+  prompt: "Dealing with a meat proxy? Share this page:"
   copyLabel: Copy link
   copiedLabel: Copied!
-  secondary: 'Or react with one of these:'
+  secondary: "Or react with one of these:"
   emojiDownloadTitle: Download meat_proxy.png
   emojiFrontAlt: Meat proxy emoji, front view
   emojiAngledAlt: Meat proxy emoji, angled view
 footer:
-  inspiredByHeading: 'Inspired by:'
-  alsoAvailable: 'Also available in:'
-  sourcePrefix: 'Source on '
+  inspiredByHeading: "Inspired by:"
+  alsoAvailable: "Also available in:"
+  sourcePrefix: "Source on "
   sourceSuffix: .
-  createdByPrefix: 'Created by '
+  createdByPrefix: "Created by "
   createdBySuffix: .
   disclaimer: >-
     (Before any "gotchas": Parts of this website is AI-generated. I'm bad at CSS, frontend and in
