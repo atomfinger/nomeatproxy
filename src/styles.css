@@ -396,6 +396,11 @@ footer li {
 	margin: 0.2rem 0;
 }
 
+footer .sa-badge a {
+	display: inline-block;
+	line-height: 0;
+}
+
 a {
 	color: var(--accent);
 }
